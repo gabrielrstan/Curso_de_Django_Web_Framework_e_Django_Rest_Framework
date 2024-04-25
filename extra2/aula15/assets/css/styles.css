@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* .pai h1+p {
+    color: red;
+} */
+
+/* .pai h1~p {
+    color: red;
+} */
+
+/* .pai .um~.dois {
+    color: red;
+} */
+
+.pai .um+.dois {
+    color: red;
+}
+
+/* .pai p+h1 {
+    color: yellow;
+} */
+
+/* [meu-atributo="valor"] {
+    color: red;
+} */
+/* 
+[meu-atributo~="valor2"] {
+    color: red;
+} */
+
+/* [meu-atributo|="valor"] {
+    color: red;
+} */
+
+/* [meu-atributo^="val"] {
+    color: red;
+} */
+
+/* [meu-atributo$="l"] {
+    color: red;
+} */
+
+[meu-atributo*="lor"] {
+    color: red;
+}
+
+[checked] {
+    width: 50px;
+    height: 50px;
+}

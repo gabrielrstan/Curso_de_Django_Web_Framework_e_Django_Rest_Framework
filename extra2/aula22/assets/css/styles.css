@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid {
+    padding: 15px;
+}
+
+.grid::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.grid .col {
+    width: 33.3%;
+    height: 300px;
+    float: left;
+    padding: 15px;
+}
+
+.grid .col-content {
+    width: 100%;
+    height: 100%;
+    background: red; 
+    background: #DDA0B8; /* ABCDEF0123456789 */
+    background: rgb(241, 139, 139); 
+    background: rgba(0, 0, 0, 0.30); 
+    background: hsl(0, 100%, 50%); 
+    background: hsla(0, 100%, 50%, 40%); 
+    color: #FFF;
+    /* margin: 30px; */
+    float: left;
+}
+
+/* p {
+    clear: both;
+} */

@@ -1,0 +1,55 @@
+/*
+ID      Classes, atributos e pseudo-classes     Elementos e pseudo-elementos
+0       1                                       0
+1       0                                       0
+1       1                                       0
+1       1                                       1
+2       1                                       1
+2       1                                       2
+2       2                                       2
+2       2                                       3
+2       3                                       3
+especificidade
+empate
+style
+!important
+*/
+
+
+.p {
+    background: yellow !important;
+}
+
+#p {
+    background: red;
+}
+
+
+#p.p {
+    background: blue;
+}
+
+p#p.p {
+    background: green;
+}
+
+#b p#p.p {
+    background: purple;
+}
+
+body#b p#p.p {
+    background: pink;
+}
+
+body#b.bclass p#p.p {
+    background: aquamarine;
+}
+
+body#b.bclass p#p.p::selection {
+    background: royalblue;
+}
+
+body#b.bclass p#p.p::selection:hover {
+    background: royalblue;
+}
+

@@ -1,0 +1,3 @@
+DELETE FROM users WHERE id=1;
+
+SELECT * FROM users WHERE id BETWEEN 1 AND 10; 

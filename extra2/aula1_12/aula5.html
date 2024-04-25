@@ -1,0 +1,89 @@
+<!-- https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/strong -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* h1 {
+            background: red;
+        } */
+        .img-in-text {
+            width: 50px;
+            height: 50px;
+        }
+
+        .vermelho {
+            font-size: 24px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cabeçalho</h1>
+    <!-- <h1>Cabeçalho</h1> -->
+    <p>
+        <b>Lorem</b> <strong>ipsum</strong> <i>dolor</i> <em>sit</em> <a href="https://www.python.org/" target="_blank">
+            amet </a>
+        <a href="https://www.python.org/" target="_blank"> <img class="img-in-text"
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Logo do Python">
+        </a>
+        <del>vermelho</del> <ins>azul</ins> <s>consectetur adipisicing</s> <u>elit</u>. <small>Saepe</small> expedita
+        minus, 2<sup>2</sup> H<sub>2</sub>O accusamus dolor dolorum amet, nemo
+        repellendus obcaecati, aperiam animi laboriosam illo ipsum debitis
+        aspernatur reiciendis sapiente odit eos excepturi?
+    </p>
+    <hr>
+    <p>
+        <span class="vermelho">Lorem</span> ipsum dolor sit amet <code>console.log</code> consectetur
+        adipisicing elit. Saepe expedita <br> minus,
+        <q cite="https://www.python.org/">Python is a programming language that
+            lets <span class="vermelho">you work</span> quickly and integrate 
+            more effectively</q> dolor dolorum amet, nemo repellendus obcaecati,
+        aperiam animi laboriosam illo ipsum debitis aspernatur reiciendis
+        sapiente odit eos excepturi?
+    </p>
+    <blockquote cite="https://www.python.org/">
+        <p>Aqui sim eu estou fazendo um bloco de citação</p>
+    </blockquote>
+
+    <pre>
+        <code>
+# os + shutil - Copiando arquivos com Python
+# Vamos copiar arquivos de uma pasta para outra.
+# Mover/Renomear -> shutil.move
+# Mover/Renomear -> os.rename
+# Copiar -> shutil.copy
+# Apagar -> os.unlink
+# Apagar diretório recursivamente -> shutil.rmtree
+import os
+import shutil
+
+HOME = os.path.expanduser('~')
+DESKTOP = os.path.join(HOME, 'Desktop')
+PASTA_ORIGINAL = os.path.join(DESKTOP, 'EXEMPLO')
+NOVA_PASTA = os.path.join(DESKTOP, 'NOVA_PASTA')
+
+os.makedirs(NOVA_PASTA, exist_ok=True)
+
+for root, dirs, files in os.walk(PASTA_ORIGINAL):
+    for dir_ in dirs:
+        caminnho_novo_diretorio = os.path.join(
+            root.replace(PASTA_ORIGINAL, NOVA_PASTA), dir_
+        )
+        os.makedirs(caminnho_novo_diretorio, exist_ok=True)
+
+    for file in files:
+        caminho_arquivo = os.path.join(root, file)
+        caminnho_novo_arquivo = os.path.join(
+            root.replace(PASTA_ORIGINAL, NOVA_PASTA), file
+        )
+        shutil.copy(caminho_arquivo, caminnho_novo_arquivo)
+</code></pre>
+    <div class="vermelho">Eu sou um bloco</div>
+</body>
+
+</html>
