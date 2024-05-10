@@ -1,10 +1,10 @@
 __localcode
 .DS_Store
-chromedriver
 static_files
 /data/
 static/
 */*.pdf
+*/bin/chromedriver-linux64
 
 # Byte-compiled / optimized / DLL files
 __pycache__
