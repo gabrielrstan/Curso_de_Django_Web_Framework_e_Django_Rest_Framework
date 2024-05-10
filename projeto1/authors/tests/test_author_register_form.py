@@ -72,7 +72,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
     })
     def test_fields_cannot_be_empty(self, field, msg):
         self.form_data[field] = ''
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
         # Esse retorna o HTML / content
         # self.assertIn(msg, response.content.decode('utf-8'))
@@ -82,7 +82,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
 
     def test_username_field_min_length_should_be_4(self):
         self.form_data['username'] = 'Mia'
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = 'Username must have at least 4 characters'
@@ -90,7 +90,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
 
     def test_username_field_max_length_should_be_150(self):
         self.form_data['username'] = 'A' * 151
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = 'Username must have less than 150 characters'
@@ -98,7 +98,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
 
     def test_password_field_have_lower_upper_case_letter_and_numbers(self):
         self.form_data['password'] = 'abc123'
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = ('Password must have at least one uppercase letter, one '
@@ -107,7 +107,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
         self.assertIn(msg, response.context['form'].errors.get('password'))
 
         self.form_data['password'] = '@A123bc123'
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertNotIn(msg, response.context['form'].errors.get('password'))
@@ -115,7 +115,7 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
     def test_password_and_password_confirmation_are_equal(self):
         self.form_data['password'] = '@A123bc123'
         self.form_data['password2'] = '@A123bc1235'
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         msg = 'Password and password2 must be the same'
@@ -123,18 +123,18 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
 
         self.form_data['password'] = '@A123bc123'
         self.form_data['password2'] = '@A123bc123'
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.post(url, data=self.form_data, follow=True)
 
         self.assertNotIn(msg, response.content.decode('utf-8'))
 
     def test_send_get_request_to_registration_create_view_returns_404(self):
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
     def test_email_field_must_be_unique(self):
-        url = reverse('authors:create')
+        url = reverse('authors:register_create')
 
         self.client.post(url, data=self.form_data, follow=True)
 
@@ -144,3 +144,21 @@ class AuthorRegisterFormIntegrationTest(DjangoTestCase):
 
         self.assertIn(msg, response.context['form'].errors.get('email'))
         self.assertIn(msg, response.content.decode('utf-8'))
+
+    def test_author_created_can_login(self):
+        url = reverse('authors:register_create')
+
+        self.form_data.update({
+            'username': 'testuser',
+            'password': '@Bc123456',
+            'password2': '@Bc123456',
+        })
+
+        self.client.post(url, data=self.form_data, follow=True)
+
+        is_authenticated = self.client.login(
+            username='testuser',
+            password='@Bc123456'
+        )
+
+        self.assertTrue(is_authenticated)
