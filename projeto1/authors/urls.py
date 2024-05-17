@@ -1,8 +1,9 @@
 from django.urls import path
 
-from authors.views import (dashboard, dashboard_recipe_edit,
-                           dashboard_recipe_new, login_create, login_view,
-                           logout_view, register_create, register_view)
+from authors.views import (dashboard, dashboard_recipe_delete,
+                           dashboard_recipe_edit, dashboard_recipe_new,
+                           login_create, login_view, logout_view,
+                           register_create, register_view)
 
 app_name = 'authors'
 
@@ -15,6 +16,8 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('dashboard/recipe/new/', dashboard_recipe_new,
          name='dashboard_recipe_new'),
+    path('dashboard/recipe/delete/', dashboard_recipe_delete,
+         name='dashboard_recipe_delete'),
     path('dashboard/recipe/<int:id>/edit/', dashboard_recipe_edit,
          name='dashboard_recipe_edit'),
 
