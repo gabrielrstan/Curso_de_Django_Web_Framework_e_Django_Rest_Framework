@@ -1,9 +1,11 @@
 from django.urls import path
 
-from authors.views import (dashboard, dashboard_recipe_delete,
-                           dashboard_recipe_edit, dashboard_recipe_new,
-                           login_create, login_view, logout_view,
-                           register_create, register_view)
+from authors.views import (dashboard, login_create,
+                           login_view, logout_view, register_create,
+                           register_view)
+from authors.views.dashboard_recipe import (DashboardRecipe,
+                                            DashboardRecipeCreate,
+                                            DashboardRecipeDelete)
 
 app_name = 'authors'
 
@@ -14,11 +16,11 @@ urlpatterns = [
     path('login/create/', login_create, name='login_create'),
     path('logout/', logout_view, name='logout'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('dashboard/recipe/new/', dashboard_recipe_new,
+    path('dashboard/recipe/new/', DashboardRecipeCreate.as_view(),
          name='dashboard_recipe_new'),
-    path('dashboard/recipe/delete/', dashboard_recipe_delete,
+    path('dashboard/recipe/delete/', DashboardRecipeDelete.as_view(),
          name='dashboard_recipe_delete'),
-    path('dashboard/recipe/<int:id>/edit/', dashboard_recipe_edit,
+    path('dashboard/recipe/<int:id>/edit/', DashboardRecipe.as_view(),
          name='dashboard_recipe_edit'),
 
 ]

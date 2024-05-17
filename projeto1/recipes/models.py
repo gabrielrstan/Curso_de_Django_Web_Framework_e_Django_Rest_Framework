@@ -1,5 +1,11 @@
+
+import random
+from string import ascii_letters
+
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Category(models.Model):
@@ -36,3 +42,14 @@ class Recipe(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('recipes:recipe', args=(self.id,))  # type: ignore
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            rand = ''.join(random.choice(ascii_letters) for x in range(5))
+            slug = f'{slugify(self.title)}-{rand}'
+            self.slug = slug
+
+        return super().save(*args, **kwargs)
