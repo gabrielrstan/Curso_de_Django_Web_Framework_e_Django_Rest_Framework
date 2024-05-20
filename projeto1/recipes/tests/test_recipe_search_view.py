@@ -1,14 +1,14 @@
 from django.urls import resolve, reverse
 
 from recipes.tests.test_recipe_base import RecipeTestBase
-from recipes.views import search
+from recipes.views import RecipeListViewSearch
 
 
 class RecipeSearchViewTest(RecipeTestBase):
 
     def test_recipe_search_uses_correct_view_function(self):
         resolved = resolve(reverse('recipes:search'))
-        self.assertIs(resolved.func, search)
+        self.assertIs(resolved.func.view_class, RecipeListViewSearch)
 
     def test_recipe_search_loads_correct_template(self):
         response = self.client.get(reverse('recipes:search') + '?q=test')

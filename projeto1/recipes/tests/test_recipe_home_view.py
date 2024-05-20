@@ -3,13 +3,13 @@ from unittest.mock import patch
 from django.urls import resolve, reverse
 
 from recipes.tests.test_recipe_base import RecipeTestBase
-from recipes.views import home
+from recipes.views import RecipeListViewHome
 
 
 class RecipeHomeViewTest(RecipeTestBase):
     def test_recipe_home_view_function_is_correct(self):
         view = resolve(reverse('recipes:home'))
-        self.assertIs(view.func, home)
+        self.assertIs(view.func.view_class, RecipeListViewHome)
 
     def test_recipe_home_view_returns_status_code_200_OK(self):
         response = self.client.get(reverse('recipes:home'))

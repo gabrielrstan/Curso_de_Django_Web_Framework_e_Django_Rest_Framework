@@ -1,13 +1,15 @@
 from django.urls import path
 
-from recipes.views import category, home, recipe, search
+from recipes.views import (RecipeDetail, RecipeListViewCategory,
+                           RecipeListViewHome, RecipeListViewSearch)
 
 app_name = 'recipes'
 
 urlpatterns = [
-    path('', home, name='home'),
-    path('recipes/search/', search, name='search'),
-    path('recipes/category/<int:category_id>/', category, name='category'),
-    path('recipes/<int:id>/', recipe, name='recipe'),
+    path('', RecipeListViewHome.as_view(), name='home'),
+    path('recipes/search/', RecipeListViewSearch.as_view(), name='search'),
+    path('recipes/category/<int:category_id>/',
+         RecipeListViewCategory.as_view(), name='category'),
+    path('recipes/<int:pk>/', RecipeDetail.as_view(), name='recipe'),
 
 ]
