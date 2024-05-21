@@ -1,6 +1,5 @@
 import os
 
-from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.forms import model_to_dict
 from django.http import Http404, JsonResponse
@@ -14,12 +13,16 @@ PER_PAGE = int(os.environ.get('PER_PAGE', 6))
 
 
 def theory(request, *args, **kwargs):
-    try:
-        recipes = Recipe.objects.all().get(id=10000)
+    recipes = Recipe.objects.filter(
+        Q(
+            Q(title__icontains='Outra Receita',
+              id__gt=5,
+              is_published=True,) |
+            Q(id__gt=1000)
 
-    except ObjectDoesNotExist:
-        recipes = None
+        )
 
+    )[:20]
     context = {
         'recipes': recipes,
     }
