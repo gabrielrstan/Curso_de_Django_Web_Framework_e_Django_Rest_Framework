@@ -23,6 +23,7 @@ class RecipeListViewBase(ListView):
         qs = qs.filter(
             is_published=True,
         )
+        qs = qs.select_related('author', 'category')
         return qs
 
     def get_context_data(self, *args, **kwargs):
@@ -137,8 +138,10 @@ class RecipeDetailAPI(RecipeDetail):
         recipe_dict['updated_at'] = str(recipe.updated_at)
 
         if recipe_dict.get('cover'):
-            recipe_dict['cover'] = self.request.build_absolute_uri() + \
-                recipe_dict['cover'].url[1:]
+            # recipe_dict['cover'] = self.request.build_absolute_uri() + \
+            #     recipe_dict['cover'].url[1:]
+            recipe_dict['cover'] = 'http://127.0.0.1:8000' + \
+                recipe_dict['cover'].url
         else:
             recipe_dict['cover'] = ''
 
