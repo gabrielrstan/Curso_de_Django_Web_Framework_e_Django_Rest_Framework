@@ -10,7 +10,8 @@
    
     <ul>
         {% for recipe in recipes %}
-            <li>{{recipe.id}} {{recipe.author__first_name}} {{recipe.title}} </li>
+            <li>{{recipe.id}} {{recipe.title}} </li>
+            {% comment %} {{recipe.author__first_name}} {{recipe.title}}  {% endcomment %}
         {%empty%}
             <p>No recipes found</p>
         {% endfor %}
