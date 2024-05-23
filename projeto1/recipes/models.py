@@ -3,7 +3,6 @@ from random import SystemRandom
 from string import ascii_letters, digits
 
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models import F, Value
 from django.db.models.functions import Concat
@@ -58,7 +57,7 @@ class Recipe(models.Model):
         default=None)
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
-    tags = GenericRelation(Tag, related_query_name='recipes')
+    tags = models.ManyToManyField(Tag)  # type: ignore
 
     def __str__(self) -> str:
         return self.title
