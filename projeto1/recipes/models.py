@@ -1,4 +1,5 @@
 
+from collections import defaultdict
 from random import SystemRandom
 from string import ascii_letters, digits
 
@@ -6,6 +7,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import F, Value
 from django.db.models.functions import Concat
+from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -73,3 +75,19 @@ class Recipe(models.Model):
             self.slug = slugify(f'{self.title}-{rand_letters}')
 
         return super().save(*args, **kwargs)
+
+    def clean(self, *args, **kwargs):
+        error_messages = defaultdict(list)
+
+        recipe_from_db = Recipe.objects.filter(
+            title__iexact=self.title
+        ).first()
+
+        if recipe_from_db:
+            if recipe_from_db.pk != self.pk:
+                error_messages['title'].append(
+                    'Recipe with this title already exists'
+                )
+
+        if error_messages:
+            raise ValidationError(error_messages)
