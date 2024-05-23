@@ -1,13 +1,16 @@
 
-import random
-from string import ascii_letters
+from random import SystemRandom
+from string import ascii_letters, digits
 
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models import F, Value
 from django.db.models.functions import Concat
 from django.urls import reverse
 from django.utils.text import slugify
+
+from tag.models import Tag
 
 
 class Category(models.Model):
@@ -55,6 +58,7 @@ class Recipe(models.Model):
         default=None)
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
+    tags = GenericRelation(Tag, related_query_name='recipes')
 
     def __str__(self) -> str:
         return self.title
@@ -64,8 +68,9 @@ class Recipe(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            rand = ''.join(random.choice(ascii_letters) for x in range(5))
-            slug = f'{slugify(self.title)}-{rand}'
-            self.slug = slug
+            rand_letters = ''.join(
+                SystemRandom().choices(ascii_letters + digits, k=5))
+
+            self.slug = slugify(f'{self.title}-{rand_letters}')
 
         return super().save(*args, **kwargs)
