@@ -1,11 +1,11 @@
 from django.urls import path
 
-from authors.views import (dashboard, login_create,
-                           login_view, logout_view, register_create,
-                           register_view)
+from authors.views import (dashboard, login_create, login_view, logout_view,
+                           register_create, register_view)
 from authors.views.dashboard_recipe import (DashboardRecipe,
                                             DashboardRecipeCreate,
                                             DashboardRecipeDelete)
+from authors.views.profile import ProfileView
 
 app_name = 'authors'
 
@@ -22,5 +22,6 @@ urlpatterns = [
          name='dashboard_recipe_delete'),
     path('dashboard/recipe/<int:id>/edit/', DashboardRecipe.as_view(),
          name='dashboard_recipe_edit'),
+    path('profile/<int:id>/', ProfileView.as_view(), name='profile'),
 
 ]

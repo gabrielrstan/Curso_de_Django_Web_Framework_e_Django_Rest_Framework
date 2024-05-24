@@ -59,7 +59,7 @@ class Recipe(models.Model):
         default=None)
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True)
-    tags = models.ManyToManyField(Tag)  # type: ignore
+    tags = models.ManyToManyField(Tag, blank=True, default='')  # type: ignore
 
     def __str__(self) -> str:
         return self.title
