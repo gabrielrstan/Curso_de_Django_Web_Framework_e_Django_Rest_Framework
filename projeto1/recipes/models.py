@@ -10,14 +10,15 @@ from django.db.models.functions import Concat
 from django.forms import ValidationError
 from django.urls import reverse
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
 from tag.models import Tag
 
 
 class Category(models.Model):
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
     name = models.CharField(max_length=65)
 
@@ -39,8 +40,12 @@ class RecipeManager(models.Manager):
 
 
 class Recipe(models.Model):
+    class Meta:
+        verbose_name = _('Recipe')
+        verbose_name_plural = _('Recipes')
+
     objects = RecipeManager()
-    title = models.CharField(max_length=65)
+    title = models.CharField(max_length=65, verbose_name=_('Title'))
     description = models.TextField()
     slug = models.SlugField(unique=True)
     preparation_time = models.IntegerField()
