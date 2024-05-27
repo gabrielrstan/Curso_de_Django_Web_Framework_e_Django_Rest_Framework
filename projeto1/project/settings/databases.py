@@ -12,7 +12,7 @@ DATABASES = {
         'HOST': os.environ.get('DATABASE_HOST'),
         'PORT': os.environ.get('DATABASE_PORT'),
         "OPTIONS": {
-            "timeout": 20,
+            "timeout": 60,
         },
 
     }
