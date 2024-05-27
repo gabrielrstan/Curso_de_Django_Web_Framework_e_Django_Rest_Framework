@@ -1,7 +1,7 @@
 from django.urls import resolve, reverse
 
 from recipes.tests.test_recipe_base import RecipeTestBase
-from recipes.views import RecipeListViewSearch
+from recipes.views.site import RecipeListViewSearch
 
 
 class RecipeSearchViewTest(RecipeTestBase):
