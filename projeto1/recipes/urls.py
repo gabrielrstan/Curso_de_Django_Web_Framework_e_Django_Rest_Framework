@@ -1,6 +1,7 @@
 from django.urls import path
 
-from recipes.views.api import recipe_api_list
+from recipes.views.api import (recipe_api_detail, recipe_api_list,
+                               tag_api_detail)
 from recipes.views.site import (RecipeDetail, RecipeDetailAPI,
                                 RecipeListViewCategory, RecipeListViewHome,
                                 RecipeListViewHomeAPI, RecipeListViewSearch,
@@ -22,5 +23,9 @@ urlpatterns = [
          name='api_v1_detail'),
     path('recipes/theory/', theory, name='theory'),
     path('recipes/api/v2/', recipe_api_list, name='recipes_api_v2'),
+    path('recipes/api/v2/<int:pk>/', recipe_api_detail,
+         name='recipes_api_v2_detail'),
+    path('recipes/api/v2/tag/<int:pk>/', tag_api_detail,
+         name='recipes_api_v2_tag'),
 
 ]
