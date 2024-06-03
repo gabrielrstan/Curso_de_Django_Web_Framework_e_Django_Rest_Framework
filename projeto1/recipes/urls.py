@@ -3,7 +3,7 @@ from rest_framework.routers import SimpleRouter
 from rest_framework_simplejwt.views import (TokenObtainPairView,
                                             TokenRefreshView, TokenVerifyView)
 
-from recipes.views.api import RecipeAPiv2ViewSet, tag_api_detail
+from recipes.views.api import RecipeAPIv2ViewSet, tag_api_detail
 from recipes.views.site import (RecipeDetail, RecipeDetailAPI,
                                 RecipeListViewCategory, RecipeListViewHome,
                                 RecipeListViewHomeAPI, RecipeListViewSearch,
@@ -14,7 +14,7 @@ app_name = 'recipes'
 recipe_api_v2_router = SimpleRouter()
 recipe_api_v2_router.register(
     'recipes/api/v2',
-    RecipeAPiv2ViewSet,
+    RecipeAPIv2ViewSet,
     basename='recipes-api',
 )
 
