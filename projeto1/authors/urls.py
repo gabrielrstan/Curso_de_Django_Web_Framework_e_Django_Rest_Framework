@@ -1,13 +1,17 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
 from authors.views import (dashboard, login_create, login_view, logout_view,
                            register_create, register_view)
+from authors.views.api import AuthorViewSet
 from authors.views.dashboard_recipe import (DashboardRecipe,
                                             DashboardRecipeCreate,
                                             DashboardRecipeDelete)
 from authors.views.profile import ProfileView
 
 app_name = 'authors'
+author_api_route = SimpleRouter()
+author_api_route.register('api', AuthorViewSet, basename='author-api')
 
 urlpatterns = [
     path('register/', register_view, name='register'),
@@ -25,3 +29,5 @@ urlpatterns = [
     path('profile/<int:id>/', ProfileView.as_view(), name='profile'),
 
 ]
+
+urlpatterns += author_api_route.urls
