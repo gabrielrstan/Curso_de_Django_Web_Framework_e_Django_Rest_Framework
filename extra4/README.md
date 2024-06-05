@@ -1,5 +1,5 @@
-# COMANDOS DA SEÇÃO 22
-LINK: [https://www.youtube.com/watch?v=UQBAytRBNiM](https://www.youtube.com/watch?v=UQBAytRBNiM)
+# COMANDOS DA SEÇÃO 32, Extra 4
+LINK: [https://www.youtube.com/watch?v=UQBAytRBNiM](https://www.youtube.com/watch?v=UQBAytRBNiM) (Link obtido por meio do curso de Python ministrada pelo mesmo professor)
 
 # Se você usa MacOS
 O macOs roda sobre Darwin OS (kernel XNU), que é um sistema UNIX-like. Então, 
@@ -20,7 +20,7 @@ Primeiro, siga este vídeo para ativar o WSL2 [https://youtu.be/05YN8F8ajBc](htt
 # Comandos mais básicos e muito usados
 ## Privilégios do usuário
 - `sudo` - Permite executar programas c/ privilégios de outro usuário - por padrão,
-  como o root). `sudo` significa "substitute user do" (usuário 
+ (como o root). `sudo` significa "substitute user do" (usuário 
   substituto faça)  
   
 Vídeo sobre su, sudo e sudoers. Nesse vídeo eu detalho mais sobre o comando su, sudo e o arquivo sudoers:
