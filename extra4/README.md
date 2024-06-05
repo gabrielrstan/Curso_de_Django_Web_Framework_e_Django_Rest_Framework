@@ -1,5 +1,5 @@
 # COMANDOS DA SEÇÃO 32, Extra 4
-LINK: [https://www.youtube.com/watch?v=UQBAytRBNiM](https://www.youtube.com/watch?v=UQBAytRBNiM) (Link obtido por meio do curso de Python ministrada pelo mesmo professor)
+LINK: [https://www.youtube.com/watch?v=UQBAytRBNiM](https://www.youtube.com/watch?v=UQBAytRBNiM) (Link obtido por meio do curso de Python ministrado pelo mesmo professor)
 
 # Se você usa MacOS
 O macOs roda sobre Darwin OS (kernel XNU), que é um sistema UNIX-like. Então, 
